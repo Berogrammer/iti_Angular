@@ -1,0 +1,12 @@
+<div *ngFor="let student of students" class="card m-3" style="width: 18rem;">
+  
+  <img [src]="student.photoUrl" class="card-img-top" />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ student.name }}</h5>
+    <p class="card-text">Age: {{ student.age }}</p>
+
+    <button class="btn btn-primary">View Profile</button>
+  </div>
+
+</div>
