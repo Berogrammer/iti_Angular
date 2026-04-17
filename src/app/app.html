@@ -1,0 +1,20 @@
+<main style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: sans-serif;">
+  <h1>Angular Standalone Pipe & Directive Demo</h1>
+  
+  <section>
+    <h2>Discount Pipe Demo</h2>
+    <p>Original price: <strong>1000</strong></p>
+    <p>Default 10% discount: {{ 1000 | discount }}</p>
+    <p>20% discount: {{ 1000 | discount:20 }}</p>
+    <p>50% discount: {{ 1000 | discount:50 }}</p>
+  </section>
+
+  <section style="margin-top: 3rem;">
+    <h2>appDisableAfterClick Directive Demo</h2>
+    <p>Click the button below:</p>
+    <button appDisableAfterClick class="btn">
+      Click to Test Directive
+    </button>
+  </section>
+</main>
+
