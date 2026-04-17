@@ -1,0 +1,62 @@
+
+<div class="courses-container">
+  <!-- Category Filter -->
+  <div class="filter-section">
+    <label for="categoryFilter">Filter by Category: </label>
+    <select id="categoryFilter" 
+            [value]="selectedCategory()"
+            (change)="onCategoryChange($event)"
+            class="filter-select">
+      <option value="All">All Categories</option>
+      <option value="Programming">Programming</option>
+      <option value="Design">Design</option>
+      <option value="Business">Business</option>
+    </select>
+  </div>
+
+  <!-- Courses Grid -->
+  <div class="courses-grid">
+    @for (course of filteredCourses(); track course.id) {
+      <div class="course-card" 
+           [style.background-color]="course.seats <= 2 ? '#fff3cd' : ''"
+           [class.course-full]="course.seats === 0">
+        
+        <!-- Course Image -->
+        <img [src]="course.image" 
+             [alt]="course.title"
+             class="course-image">
+
+        <!-- Course Details -->
+        <div class="course-info">
+          <h3 class="course-title">{{ course.title }}</h3>
+          <p class="instructor">Instructor: {{ course.instructor }}</p>
+          <p class="price">${{ course.price }}</p>
+          <p class="seats">{{ course.seats }} seats available</p>
+        </div>
+
+        <!-- Register Button -->
+        <button class="register-btn"
+                [disabled]="course.seats === 0"
+                (click)="register(course.id)">
+          @if (course.seats === 0) {
+            Course Full
+          } @else {
+            @if (course.seats <= 2) {
+              Almost Full - Register
+            } @else {
+              Register Now
+            }
+          }
+        </button>
+
+        @if (course.seats === 0) {
+          <div class="status-full">Course Full - No Seats Available</div>
+        }
+      </div>
+    }
+    @empty {
+      <p class="no-courses">No courses found for the selected category.</p>
+    }
+  </div>
+</div>
+
